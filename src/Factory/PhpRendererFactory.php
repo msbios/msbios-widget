@@ -27,7 +27,7 @@ class PhpRendererFactory implements FactoryInterface
         /** @var RendererInterface $renderer */
          $renderer = new PhpRenderer;
          $renderer->setHelperPluginManager($container->get('ViewHelperManager'));
-         $renderer->setResolver($container->get('WidgetResolver'));
+         $renderer->setResolver($container->get('WidgetViewResolver'));
          return $renderer;
     }
 }
