@@ -7,6 +7,7 @@
 namespace MSBios\Widget;
 
 use MSBios\ModuleInterface;
+use MSBios\Widget\Feature\WidgetProviderInterface;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
@@ -69,7 +70,7 @@ class Module implements
         $serviceListener->addServiceManager(
             'WidgetManager',
             'widget_manager',
-            WidgetManagerProviderInterface::class,
+            WidgetProviderInterface::class,
             'getWidgetManagerConfig'
         );
     }

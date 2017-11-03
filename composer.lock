@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e725cfb94288b8305d9a4cea20289500",
+    "content-hash": "c120be7b42a40f2d729a8adbd3aedd30",
     "packages": [
         {
             "name": "msbios/msbios",

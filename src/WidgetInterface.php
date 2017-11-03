@@ -5,8 +5,6 @@
  */
 namespace MSBios\Widget;
 
-use Zend\View\Renderer\RendererInterface;
-
 /**
  * Interface WidgetInterface
  * @package MSBios\Widget

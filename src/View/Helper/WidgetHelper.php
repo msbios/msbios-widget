@@ -8,7 +8,6 @@ namespace MSBios\Widget\View\Helper;
 
 use MSBios\Widget\Exception\InvalidArgumentException;
 use MSBios\Widget\Exception\WidgetNotFoundException;
-use MSBios\Widget\PhpRendererInterface;
 use MSBios\Widget\WidgetInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
@@ -39,24 +38,23 @@ class WidgetHelper extends AbstractHelper
      */
     public function __invoke($identifier, $options = null)
     {
-        if ($this->widgetManager->has($identifier)) {
-
-            /** @var WidgetInterface $widget */
-            $widget = $this->widgetManager->get($identifier);
-
-            if (! $widget instanceof WidgetInterface) {
-                throw new InvalidArgumentException(
-                    'This registered service is not a widget, '
-                    . 'to define a widget, implement the interface' . WidgetInterface::class
-                );
-            }
-
-            return $widget->output($options);
+        if (!$this->widgetManager->has($identifier)) {
+            throw new WidgetNotFoundException(
+                "Unable to resolve widget '{$identifier}' to a factory; "
+                . "are you certain you provided it during configuration?"
+            );
         }
 
-        throw new WidgetNotFoundException(
-            "Unable to resolve widget '{$identifier}' to a factory; "
-            . "are you certain you provided it during configuration?"
-        );
+        /** @var WidgetInterface $widget */
+        $widget = $this->widgetManager->get($identifier);
+
+        if (!$widget instanceof WidgetInterface) {
+            throw new InvalidArgumentException(
+                'This registered service is not a widget, '
+                . 'to define a widget, implement the interface' . WidgetInterface::class
+            );
+        }
+
+        return $widget->output($options);
     }
 }
