@@ -3,19 +3,18 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-
 namespace MSBios\Widget;
 
 use Zend\View\Renderer\RendererInterface;
 
 /**
- * Class AbstractRendererWidget
+ * Trait RendererWidgetAwareTrait
  * @package MSBios\Widget
  */
-abstract class AbstractRendererWidget implements WidgetInterface, RendererAwareInterface
+trait RendererWidgetAwareTrait
 {
     /** @var  RendererInterface */
-    private $renderer;
+    protected $renderer;
 
     /**
      * @param RendererInterface $renderer
@@ -25,6 +24,14 @@ abstract class AbstractRendererWidget implements WidgetInterface, RendererAwareI
     {
         $this->renderer = $renderer;
         return $this;
+    }
+
+    /**
+     * @return RendererInterface
+     */
+    public function getRenderer()
+    {
+        return $this->renderer;
     }
 
     /**

@@ -6,8 +6,6 @@
 
 namespace MSBios\Widget;
 
-use MSBios\Widget\Factory\WidgetPluginManagerFactory;
-
 return [
 
     'widget_manager' => [
@@ -18,30 +16,8 @@ return [
 
     'service_manager' => [
         'factories' => [
-
-            'WidgetManager' =>
-                WidgetPluginManagerFactory::class,
-
             Module::class =>
-                Factory\ModuleFactory::class,
-            PhpRendererInterface::class =>
-                Factory\PhpRendererFactory::class,
-            ResolverInterface::class =>
-                Factory\AggregateResolverFactory::class,
-            TemplatePathStackInterface::class =>
-                Factory\TemplatePathStackFactory::class,
-            TemplateMapResolverInterface::class =>
-                Factory\TemplateMapResolverFactory::class
-        ],
-        'aliases' => [
-            'WidgetRenderer' =>
-                PhpRendererInterface::class,
-            'WidgetResolver' =>
-                ResolverInterface::class,
-            'WidgetTemplatePathStack' =>
-                TemplatePathStackInterface::class,
-            'WidgetTemplateMapResolver' =>
-                TemplateMapResolverInterface::class
+                Factory\ModuleFactory::class
         ]
     ],
 
@@ -56,10 +32,24 @@ return [
     ],
 
     Module::class => [
+
+        /**
+         *
+         */
         'default_template_suffix' => 'phtml',
+
+        /**
+         *
+         */
         'template_map' => [
+            // 'key' => 'path/to/file.template_suffix'
         ],
+
+        /**
+         *
+         */
         'template_path_stack' => [
+            // path/to/template
         ],
     ],
 ];

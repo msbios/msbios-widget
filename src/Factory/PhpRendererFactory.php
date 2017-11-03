@@ -11,7 +11,7 @@ use Zend\View\Renderer\PhpRenderer;
 use Zend\View\Renderer\RendererInterface;
 
 /**
- * Class WidgetRendererFactory
+ * Class PhpRendererFactory
  * @package MSBios\Widget\Factory
  */
 class PhpRendererFactory implements FactoryInterface

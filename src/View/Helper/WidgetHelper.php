@@ -6,9 +6,9 @@
 
 namespace MSBios\Widget\View\Helper;
 
-use MSBios\Widget\Exception\NotFoundException;
+use MSBios\Widget\Exception\InvalidArgumentException;
+use MSBios\Widget\Exception\WidgetNotFoundException;
 use MSBios\Widget\PhpRendererInterface;
-use MSBios\Widget\RendererAwareInterface;
 use MSBios\Widget\WidgetInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
@@ -19,41 +19,42 @@ use Zend\View\Helper\AbstractHelper;
  */
 class WidgetHelper extends AbstractHelper
 {
-    /** @var  ServiceLocatorInterface */
-    protected $serviceManager;
+    /** @var ServiceLocatorInterface */
+    protected $widgetManager;
 
     /**
      * WidgetHelper constructor.
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ServiceLocatorInterface $widgetManager
      */
-    public function __construct(ServiceLocatorInterface $serviceLocator)
+    public function __construct(ServiceLocatorInterface $widgetManager)
     {
-        $this->serviceManager = $serviceLocator;
+        $this->widgetManager = $widgetManager;
     }
 
     /**
      * @param $identifier
      * @param null $options
      * @return mixed
-     * @throws NotFoundException
+     * @throws WidgetNotFoundException
      */
     public function __invoke($identifier, $options = null)
     {
-        if ($this->serviceManager->has($identifier)) {
+        if ($this->widgetManager->has($identifier)) {
 
             /** @var WidgetInterface $widget */
-            $widget = $this->serviceManager->get($identifier);
+            $widget = $this->widgetManager->get($identifier);
 
-            if ($widget instanceof RendererAwareInterface) {
-                $widget->setRenderer(
-                    $this->serviceManager->get(PhpRendererInterface::class)
+            if (! $widget instanceof WidgetInterface) {
+                throw new InvalidArgumentException(
+                    'This registered service is not a widget, '
+                    . 'to define a widget, implement the interface' . WidgetInterface::class
                 );
             }
 
             return $widget->output($options);
         }
 
-        throw new NotFoundException(
+        throw new WidgetNotFoundException(
             "Unable to resolve widget '{$identifier}' to a factory; "
             . "are you certain you provided it during configuration?"
         );

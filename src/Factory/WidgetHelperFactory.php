@@ -7,7 +7,6 @@ namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
 use MSBios\Widget\View\Helper\WidgetHelper;
-use MSBios\Widget\WidgetPluginManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
@@ -24,6 +23,8 @@ class WidgetHelperFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new WidgetHelper($container);
+        return new WidgetHelper(
+            $container->get('WidgetManager')
+        );
     }
 }

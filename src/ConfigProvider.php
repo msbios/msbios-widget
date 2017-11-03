@@ -3,9 +3,12 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Widget;
 
+use MSBios\Widget\Factory\PhpRendererFactory;
 use MSBios\Widget\Factory\WidgetPluginManagerFactory;
+use MSBios\Widget\Initializer\WidgetAwareInitializer;
 
 /**
  * Class ConfigProvider
@@ -32,8 +35,20 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                'WidgetManager' => WidgetPluginManagerFactory::class,
+                'WidgetManager' =>
+                    WidgetPluginManagerFactory::class,
+                'WidgetPhpRenderer' =>
+                    PhpRendererFactory::class,
+                'WidgetViewResolver' =>
+                    Factory\AggregateResolverFactory::class,
+                'WidgetTemplatePathStack' =>
+                    Factory\TemplatePathStackFactory::class,
+                'WidgetTemplateMapResolver' =>
+                    Factory\TemplateMapResolverFactory::class
             ],
+            'initializers' => [
+                new WidgetAwareInitializer
+            ]
         ];
     }
 }
