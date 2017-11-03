@@ -8,10 +8,10 @@ namespace MSBios\Widget;
 use Zend\ServiceManager\AbstractPluginManager;
 
 /**
- * Class WidgetManager
+ * Class WidgetPluginManager
  * @package MSBios\Widget
  */
-class WidgetManager extends AbstractPluginManager
+class WidgetPluginManager extends AbstractPluginManager
 {
 
 }

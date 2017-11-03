@@ -7,7 +7,7 @@ namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
 use MSBios\Widget\View\Helper\WidgetHelper;
-use MSBios\Widget\WidgetManager;
+use MSBios\Widget\WidgetPluginManager;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**

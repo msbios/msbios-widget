@@ -37,5 +37,10 @@
       "phpunit"
     ],
     "commit": "git add . && git commit -a -m \"Lazy Composer Commiter\" && git push"
+  },
+  "extra": {
+    "zf": {
+      "component": "MSBios\\Widget"
+    }
   }
 }
