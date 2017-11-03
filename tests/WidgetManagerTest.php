@@ -20,17 +20,14 @@ class WidgetManagerTest extends TestCase
     /**
      * @return $this
      */
-    public function testTryCreateWidgetManager()
+    public function testCanCallWidgetManager()
     {
         /** @var ModuleLoader $moduleLoader */
         $moduleLoader = new ModuleLoader(include __DIR__ . '/../config/application.config.php');
-
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $moduleLoader->getServiceManager();
-
         /** @var WidgetPluginManager $widgetManager */
         $widgetManager = $serviceManager->get('WidgetManager');
-
         $this->assertInstanceOf(WidgetPluginManager::class, $widgetManager);
 
         return $this;
