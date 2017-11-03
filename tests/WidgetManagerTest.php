@@ -18,7 +18,7 @@ use Zend\Test\Util\ModuleLoader;
 class WidgetManagerTest extends TestCase
 {
     /**
-     *
+     * @return $this
      */
     public function testTryCreateWidgetManager()
     {
@@ -32,5 +32,7 @@ class WidgetManagerTest extends TestCase
         $widgetManager = $serviceManager->get('WidgetManager');
 
         $this->assertInstanceOf(WidgetPluginManager::class, $widgetManager);
+
+        return $this;
     }
 }

@@ -3,6 +3,7 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Widget;
 
 use MSBios\ModuleInterface;
@@ -11,6 +12,7 @@ use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\InitProviderInterface;
 use Zend\ModuleManager\ModuleManagerInterface;
+use Zend\Stdlib\ArrayUtils;
 
 /**
  * Class Module
@@ -31,7 +33,12 @@ class Module implements
      */
     public function getConfig()
     {
-        return include __DIR__ . '/../config/module.config.php';
+        return ArrayUtils::merge(
+            include __DIR__ . '/../config/module.config.php',
+            [
+                'service_manager' => (new ConfigProvider)->getDependencyConfig()
+            ]
+        );
     }
 
     /**
