@@ -9,10 +9,10 @@
 namespace MSBios\Widget\Exception;
 
 /**
- * Class WidgetNotFoundException
+ * Class NotFoundException
  * @package MSBios\Widget\Exception
  */
-class WidgetNotFoundException extends \Exception
+class NotFoundException extends \Exception
 {
 
 }

@@ -9,13 +9,21 @@ use MSBios\ModuleInterface;
 use Zend\Loader\AutoloaderFactory;
 use Zend\Loader\StandardAutoloader;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\InitProviderInterface;
+use Zend\ModuleManager\ModuleManagerInterface;
 
 /**
  * Class Module
  * @package MSBios\Widget
  */
-class Module implements ModuleInterface, AutoloaderProviderInterface
+class Module implements
+    ModuleInterface,
+    AutoloaderProviderInterface,
+    InitProviderInterface
 {
+    /** @const VERSION */
+    const VERSION = '1.0.0';
+
     /**
      * Returns configuration to merge with application configuration
      *
@@ -40,5 +48,22 @@ class Module implements ModuleInterface, AutoloaderProviderInterface
                 ],
             ],
         ];
+    }
+
+    /**
+     * @param ModuleManagerInterface $manager
+     */
+    public function init(ModuleManagerInterface $manager)
+    {
+        $event = $manager->getEvent();
+        $container = $event->getParam('ServiceManager');
+        $serviceListener = $container->get('ServiceListener');
+
+        $serviceListener->addServiceManager(
+            'WidgetManager',
+            'widget_manager',
+            WidgetProviderInterface::class,
+            'getWidgetConfig'
+        );
     }
 }

@@ -8,6 +8,12 @@ namespace MSBios\Widget;
 
 return [
 
+    'widget_manager' => [
+        'factories' => [
+            
+        ]
+    ],
+
     'service_manager' => [
         'factories' => [
             Module::class =>
@@ -15,7 +21,7 @@ return [
             PhpRendererInterface::class =>
                 Factory\PhpRendererFactory::class,
             ResolverInterface::class =>
-                Factory\ResolverFactory::class,
+                Factory\AggregateResolverFactory::class,
             TemplatePathStackInterface::class =>
                 Factory\TemplatePathStackFactory::class,
             TemplateMapResolverInterface::class =>
@@ -32,6 +38,7 @@ return [
                 TemplateMapResolverInterface::class
         ]
     ],
+
     'view_helpers' => [
         'factories' => [
             View\Helper\WidgetHelper::class =>

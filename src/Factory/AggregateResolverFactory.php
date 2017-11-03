@@ -14,10 +14,10 @@ use Zend\View\Resolver\TemplateMapResolver;
 use Zend\View\Resolver\TemplatePathStack;
 
 /**
- * Class ResolverFactory
+ * Class AggregateResolverFactory
  * @package MSBios\Widget\Factory
  */
-class ResolverFactory implements FactoryInterface
+class AggregateResolverFactory implements FactoryInterface
 {
     /**
      * @param ContainerInterface $container
@@ -33,13 +33,13 @@ class ResolverFactory implements FactoryInterface
         /** @var TemplatePathStack $stack */
         $stack = $container->get('WidgetTemplatePathStack');
 
-        /** @var AggregateResolver $resolver */
-        $resolver = new AggregateResolver;
-        $resolver->attach($map)
+        /** @var AggregateResolver $aggregateResolver */
+        $aggregateResolver = new AggregateResolver;
+        $aggregateResolver->attach($map)
             ->attach($stack)
             ->attach(new RelativeFallbackResolver($map))
             ->attach(new RelativeFallbackResolver($stack));
 
-        return $resolver;
+        return $aggregateResolver;
     }
 }

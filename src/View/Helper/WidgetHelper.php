@@ -6,7 +6,7 @@
 
 namespace MSBios\Widget\View\Helper;
 
-use MSBios\Widget\Exception\WidgetNotFoundException;
+use MSBios\Widget\Exception\NotFoundException;
 use MSBios\Widget\PhpRendererInterface;
 use MSBios\Widget\RendererAwareInterface;
 use MSBios\Widget\WidgetInterface;
@@ -20,40 +20,40 @@ use Zend\View\Helper\AbstractHelper;
 class WidgetHelper extends AbstractHelper
 {
     /** @var  ServiceLocatorInterface */
-    protected $serviseManager;
+    protected $serviceManager;
 
     /**
      * WidgetHelper constructor.
-     * @param ServiceLocatorInterface $serviseManager
+     * @param ServiceLocatorInterface $serviceLocator
      */
-    public function __construct(ServiceLocatorInterface $serviseManager)
+    public function __construct(ServiceLocatorInterface $serviceLocator)
     {
-        $this->serviseManager = $serviseManager;
+        $this->serviceManager = $serviceLocator;
     }
 
     /**
      * @param $identifier
      * @param null $options
      * @return mixed
-     * @throws WidgetNotFoundException
+     * @throws NotFoundException
      */
     public function __invoke($identifier, $options = null)
     {
-        if ($this->serviseManager->has($identifier)) {
+        if ($this->serviceManager->has($identifier)) {
 
             /** @var WidgetInterface $widget */
-            $widget = $this->serviseManager->get($identifier);
+            $widget = $this->serviceManager->get($identifier);
 
             if ($widget instanceof RendererAwareInterface) {
                 $widget->setRenderer(
-                    $this->serviseManager->get(PhpRendererInterface::class)
+                    $this->serviceManager->get(PhpRendererInterface::class)
                 );
             }
 
             return $widget->output($options);
         }
 
-        throw new WidgetNotFoundException(
+        throw new NotFoundException(
             "Unable to resolve widget '{$identifier}' to a factory; "
             . "are you certain you provided it during configuration?"
         );
