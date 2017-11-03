@@ -45,9 +45,6 @@ class ConfigProvider
                     Factory\TemplatePathStackFactory::class,
                 'WidgetTemplateMapResolver' =>
                     Factory\TemplateMapResolverFactory::class
-            ],
-            'initializers' => [
-                new WidgetAwareInitializer
             ]
         ];
     }

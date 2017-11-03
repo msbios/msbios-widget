@@ -6,11 +6,13 @@
 
 namespace MSBios\Widget;
 
+use MSBios\Widget\Initializer\WidgetAwareInitializer;
+
 return [
 
     'widget_manager' => [
-        'factories' => [
-
+        'initializers' => [
+            new WidgetAwareInitializer
         ]
     ],
 
@@ -18,7 +20,8 @@ return [
         'factories' => [
             Module::class =>
                 Factory\ModuleFactory::class
-        ]
+        ],
+
     ],
 
     'view_helpers' => [

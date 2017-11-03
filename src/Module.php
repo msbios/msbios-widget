@@ -24,7 +24,7 @@ class Module implements
     InitProviderInterface
 {
     /** @const VERSION */
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.3';
 
     /**
      * Returns configuration to merge with application configuration
@@ -69,8 +69,8 @@ class Module implements
         $serviceListener->addServiceManager(
             'WidgetManager',
             'widget_manager',
-            WidgetProviderInterface::class,
-            'getWidgetConfig'
+            WidgetManagerProviderInterface::class,
+            'getWidgetManagerConfig'
         );
     }
 }
