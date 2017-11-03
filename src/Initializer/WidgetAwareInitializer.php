@@ -27,4 +27,13 @@ class WidgetAwareInitializer implements InitializerInterface
             );
         }
     }
+
+    /**
+     * @param $an_array
+     * @return WidgetAwareInitializer
+     */
+    public static function __set_state($an_array)
+    {
+        return new self();
+    }
 }
