@@ -13,7 +13,8 @@ interface WidgetInterface
 {
     /**
      * @param null $data
+     * @param callable|null $callback
      * @return mixed
      */
-    public function output($data = null);
+    public function output($data = null, callable $callback = null);
 }

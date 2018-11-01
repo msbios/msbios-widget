@@ -33,12 +33,12 @@ class WidgetHelper extends AbstractHelper
     /**
      * @param $identifier
      * @param null $options
+     * @param callable|null $callback
      * @return mixed
-     * @throws WidgetNotFoundException
      */
-    public function __invoke($identifier, $options = null)
+    public function __invoke($identifier, $options = null, callable $callback = null)
     {
-        if (!$this->widgetManager->has($identifier)) {
+        if (! $this->widgetManager->has($identifier)) {
             throw new WidgetNotFoundException(
                 "Unable to resolve widget '{$identifier}' to a factory; "
                 . "are you certain you provided it during configuration?"
@@ -48,13 +48,13 @@ class WidgetHelper extends AbstractHelper
         /** @var WidgetInterface $widget */
         $widget = $this->widgetManager->get($identifier);
 
-        if (!$widget instanceof WidgetInterface) {
+        if (! $widget instanceof WidgetInterface) {
             throw new InvalidArgumentException(
                 'This registered service is not a widget, '
                 . 'to define a widget, implement the interface' . WidgetInterface::class
             );
         }
 
-        return $widget->output($options);
+        return $widget->output($options, $callback);
     }
 }

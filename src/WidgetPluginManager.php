@@ -13,5 +13,5 @@ use Zend\ServiceManager\AbstractPluginManager;
  */
 class WidgetPluginManager extends AbstractPluginManager
 {
-
+    // ...
 }

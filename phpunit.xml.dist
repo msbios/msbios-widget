@@ -27,6 +27,16 @@
              highlight="true"
              lowUpperBound="50"
              highLowerBound="80"/>
+        <log type="coverage-clover"
+             target="./data/logs/coverage.xml"/>
+        <log type="coverage-php"
+             target="./data/logs/coverage.serialized"/>
+        <log type="coverage-text"
+             target="php://stdout" showUncoveredFiles="false"/>
+        <log type="junit"
+             target="./data/logs/logfile.xml" logIncompleteSkipped="false"/>
+        <log type="testdox-text"
+             target="./data/logs/testdox.txt"/>
         <log type="testdox-html"
              target="./data/logs/testdox.html"/>
     </logging>
