@@ -27,8 +27,7 @@ class TemplateMapResolverFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         return new TemplateMapResolver(
-            $container->get(Module::class)
-                ->get('template_map')
+            $container->get(Module::class)['template_map']
         );
     }
 }
