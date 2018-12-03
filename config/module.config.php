@@ -10,7 +10,7 @@ use MSBios\Factory\ModuleFactory;
 
 return [
     'controller_plugins' => [
-        'factory' => [
+        'factories' => [
             Controller\Plugin\WidgetPlugin::class =>
                 Factory\WidgetInvokeFactory::class
         ],

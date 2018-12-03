@@ -23,10 +23,10 @@ trait WidgetPluginManagerAwareTrait
     }
 
     /**
-     * @param WidgetPluginManagerAwareInterface $widgetPluginManager
+     * @param WidgetPluginManagerInterface $widgetPluginManager
      * @return $this
      */
-    public function setWidgetPluginManager(WidgetPluginManagerAwareInterface $widgetPluginManager)
+    public function setWidgetPluginManager(WidgetPluginManagerInterface $widgetPluginManager)
     {
         $this->widgetPluginManager = $widgetPluginManager;
         return $this;

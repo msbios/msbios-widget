@@ -17,8 +17,8 @@ interface WidgetPluginManagerAwareInterface
     public function getWidgetPluginManager();
 
     /**
-     * @param WidgetPluginManagerAwareInterface $widgetManager
-     * @return $this
+     * @param WidgetPluginManagerInterface $widgetManager
+     * @return mixed
      */
-    public function setWidgetPluginManager(WidgetPluginManagerAwareInterface $widgetManager);
+    public function setWidgetPluginManager(WidgetPluginManagerInterface $widgetManager);
 }
