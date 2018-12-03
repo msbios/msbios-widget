@@ -35,7 +35,8 @@ class AggregateResolverFactory implements FactoryInterface
 
         /** @var AggregateResolver $aggregateResolver */
         $aggregateResolver = new AggregateResolver;
-        $aggregateResolver->attach($map)
+        $aggregateResolver
+            ->attach($map)
             ->attach($stack)
             ->attach(new RelativeFallbackResolver($map))
             ->attach(new RelativeFallbackResolver($stack));

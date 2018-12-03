@@ -25,10 +25,10 @@ class Module implements
     InitProviderInterface
 {
     /** @const VERSION */
-    const VERSION = '1.0.7';
+    const VERSION = '1.0.8';
 
     /**
-     * Returns configuration to merge with application configuration
+     * @inheritdoc
      *
      * @return array|\Traversable
      */
@@ -43,7 +43,7 @@ class Module implements
     }
 
     /**
-     * Return an array for passing to Zend\Loader\AutoloaderFactory.
+     * @inheritdoc
      *
      * @return array
      */
@@ -59,6 +59,8 @@ class Module implements
     }
 
     /**
+     * @inheritdoc
+     *
      * @param ModuleManagerInterface $manager
      */
     public function init(ModuleManagerInterface $manager)

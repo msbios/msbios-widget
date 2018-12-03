@@ -6,55 +6,28 @@
 
 namespace MSBios\Widget\View\Helper;
 
-use MSBios\Widget\Exception\InvalidArgumentException;
-use MSBios\Widget\Exception\WidgetNotFoundException;
-use MSBios\Widget\WidgetInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use MSBios\Widget\WidgetInvokeTrait;
+use MSBios\Widget\WidgetPluginManagerAwareInterface;
+use MSBios\Widget\WidgetPluginManagerAwareTrait;
+use MSBios\Widget\WidgetPluginManagerInterface;
 use Zend\View\Helper\AbstractHelper;
 
 /**
  * Class WidgetHelper
  * @package MSBios\Widget\View\Helper
  */
-class WidgetHelper extends AbstractHelper
+class WidgetHelper extends AbstractHelper implements WidgetPluginManagerAwareInterface
 {
-    /** @var ServiceLocatorInterface */
-    protected $widgetManager;
+    use WidgetPluginManagerAwareTrait;
 
     /**
      * WidgetHelper constructor.
-     * @param ServiceLocatorInterface $widgetManager
+     * @param WidgetPluginManagerInterface $widgetManager
      */
-    public function __construct(ServiceLocatorInterface $widgetManager)
+    public function __construct(WidgetPluginManagerInterface $widgetManager)
     {
-        $this->widgetManager = $widgetManager;
+        $this->setWidgetPluginManager($widgetManager);
     }
 
-    /**
-     * @param $identifier
-     * @param null $options
-     * @param callable|null $callback
-     * @return mixed
-     */
-    public function __invoke($identifier, $options = null, callable $callback = null)
-    {
-        if (! $this->widgetManager->has($identifier)) {
-            throw new WidgetNotFoundException(
-                "Unable to resolve widget '{$identifier}' to a factory; "
-                . "are you certain you provided it during configuration?"
-            );
-        }
-
-        /** @var WidgetInterface $widget */
-        $widget = $this->widgetManager->get($identifier);
-
-        if (! $widget instanceof WidgetInterface) {
-            throw new InvalidArgumentException(
-                'This registered service is not a widget, '
-                . 'to define a widget, implement the interface' . WidgetInterface::class
-            );
-        }
-
-        return $widget->output($options, $callback);
-    }
+    use WidgetInvokeTrait;
 }

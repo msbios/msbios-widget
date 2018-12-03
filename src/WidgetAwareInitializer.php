@@ -3,19 +3,21 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
-namespace MSBios\Widget\Initializer;
+namespace MSBios\Widget;
 
 use Interop\Container\ContainerInterface;
-use MSBios\Widget\RendererWidgetAwareInterface;
 use Zend\ServiceManager\Initializer\InitializerInterface;
 
 /**
  * Class WidgetAwareInitializer
- * @package MSBios\Widget\Initializer
+ * @package MSBios\Widget
+ * @todo rename WidgetRendererAwareInitializer
  */
 class WidgetAwareInitializer implements InitializerInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param object $instance
      */

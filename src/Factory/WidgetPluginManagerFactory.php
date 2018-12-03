@@ -17,10 +17,12 @@ use Zend\ServiceManager\Factory\FactoryInterface;
 class WidgetPluginManagerFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return WidgetPluginManager
+     * @return WidgetPluginManager|object
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {

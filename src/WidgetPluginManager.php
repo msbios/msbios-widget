@@ -11,7 +11,7 @@ use Zend\ServiceManager\AbstractPluginManager;
  * Class WidgetPluginManager
  * @package MSBios\Widget
  */
-class WidgetPluginManager extends AbstractPluginManager
+class WidgetPluginManager extends AbstractPluginManager implements WidgetPluginManagerInterface
 {
     // ...
 }

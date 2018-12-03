@@ -7,7 +7,6 @@ namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
 use MSBios\Widget\Module;
-use Zend\Config\Config;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Zend\View\Resolver\TemplatePathStack;
 
@@ -18,20 +17,22 @@ use Zend\View\Resolver\TemplatePathStack;
 class TemplatePathStackFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return TemplatePathStack
+     * @return object|TemplatePathStack
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        /** @var Config $options */
+        /** @var array $options */
         $options = $container->get(Module::class);
 
         /** @var TemplatePathStack $stack */
         return new TemplatePathStack([
-            'script_paths' => $options->get('template_path_stack')->toArray(),
-            'default_suffix' => $options->get('default_template_suffix')
+            'script_paths' => $options['template_path_stack'],
+            'default_suffix' => $options['default_template_suffix']
         ]);
     }
 }

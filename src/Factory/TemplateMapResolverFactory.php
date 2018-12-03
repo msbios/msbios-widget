@@ -17,10 +17,12 @@ use Zend\View\Resolver\TemplateMapResolver;
 class TemplateMapResolverFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return TemplateMapResolver
+     * @return object|TemplateMapResolver
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {

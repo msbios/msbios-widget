@@ -11,5 +11,5 @@ namespace MSBios\Widget\Exception;
  */
 class InvalidArgumentException extends \InvalidArgumentException
 {
-
+    // ...
 }

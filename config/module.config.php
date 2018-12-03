@@ -6,20 +6,31 @@
 
 namespace MSBios\Widget;
 
-use MSBios\Widget\Initializer\WidgetAwareInitializer;
+use MSBios\Factory\ModuleFactory;
 
 return [
+    'controller_plugins' => [
+        'factory' => [
+            Controller\Plugin\WidgetPlugin::class =>
+                Factory\WidgetInvokeFactory::class
+        ],
+        'aliases' => [
+            'widget' =>
+                Controller\Plugin\WidgetPlugin::class
+        ]
+    ],
 
     'widget_manager' => [
         'initializers' => [
-            new WidgetAwareInitializer
+            WidgetAwareInitializer::class =>
+                new WidgetAwareInitializer
         ]
     ],
 
     'service_manager' => [
         'factories' => [
             Module::class =>
-                Factory\ModuleFactory::class
+                ModuleFactory::class
         ],
 
     ],
@@ -27,10 +38,11 @@ return [
     'view_helpers' => [
         'factories' => [
             View\Helper\WidgetHelper::class =>
-                Factory\WidgetHelperFactory::class
+                Factory\WidgetInvokeFactory::class
         ],
         'aliases' => [
-            'widget' => View\Helper\WidgetHelper::class
+            'widget' =>
+                View\Helper\WidgetHelper::class
         ]
     ],
 
@@ -45,14 +57,14 @@ return [
          *
          */
         'template_map' => [
-            // 'key' => 'path/to/file.template_suffix'
+            // ...
         ],
 
         /**
          *
          */
         'template_path_stack' => [
-            // path/to/template
+            // ...
         ],
     ],
 ];

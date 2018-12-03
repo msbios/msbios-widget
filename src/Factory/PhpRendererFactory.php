@@ -17,10 +17,12 @@ use Zend\View\Renderer\RendererInterface;
 class PhpRendererFactory implements FactoryInterface
 {
     /**
+     * @inheritdoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return PhpRenderer|RendererInterface
+     * @return object|RendererInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
