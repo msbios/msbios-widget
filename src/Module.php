@@ -25,7 +25,7 @@ class Module implements
     InitProviderInterface
 {
     /** @const VERSION */
-    const VERSION = '1.0.8';
+    const VERSION = '1.0.9';
 
     /**
      * @inheritdoc
