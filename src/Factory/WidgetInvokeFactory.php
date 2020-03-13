@@ -7,7 +7,7 @@ namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use MSBios\Widget\PluginManager;
+use MSBios\Widget\WidgetWidgetPluginManager;
 
 /**
  * Class WidgetInvokeFactory
@@ -26,6 +26,6 @@ class WidgetInvokeFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new $requestedName($container->get(PluginManager::class));
+        return new $requestedName($container->get(WidgetWidgetPluginManager::class));
     }
 }

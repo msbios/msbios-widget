@@ -12,22 +12,22 @@ namespace MSBios\Widget;
  */
 trait PluginManagerAwareTrait
 {
-    /** @var PluginManagerInterface */
+    /** @var WidgetPluginManagerInterface */
     protected $widgetPluginManager;
 
     /**
-     * @return PluginManagerInterface
+     * @return WidgetPluginManagerInterface
      */
-    public function getWidgetPluginManager()
+    public function getWidgetPluginManager(): WidgetPluginManagerInterface
     {
         return $this->widgetPluginManager;
     }
 
     /**
-     * @param PluginManagerInterface $pluginManager
+     * @param WidgetPluginManagerInterface $pluginManager
      * @return $this
      */
-    public function setWidgetPluginManager(PluginManagerInterface $pluginManager)
+    public function setWidgetPluginManager(WidgetPluginManagerInterface $pluginManager)
     {
         $this->widgetPluginManager = $pluginManager;
         return $this;

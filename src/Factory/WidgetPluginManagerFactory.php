@@ -8,15 +8,15 @@ namespace MSBios\Widget\Factory;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Config;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use MSBios\Widget\PluginManager;
-use MSBios\Widget\PluginManagerInterface;
+use MSBios\Widget\WidgetWidgetPluginManager;
+use MSBios\Widget\WidgetPluginManagerInterface;
 
 /**
- * Class PluginManagerFactory
+ * Class WidgetPluginManagerFactory
  *
  * @package MSBios\Widget\Factory
  */
-class PluginManagerFactory implements FactoryInterface
+class WidgetPluginManagerFactory implements FactoryInterface
 {
     /**
      * @inheritDoc
@@ -24,15 +24,15 @@ class PluginManagerFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return PluginManagerInterface
+     * @return WidgetPluginManagerInterface
      */
     public function __invoke(
         ContainerInterface $container,
         $requestedName,
-        array $options = null): PluginManagerInterface
+        array $options = null): WidgetPluginManagerInterface
     {
-        /** @var PluginManager $widgetPluginManager */
-        $widgetPluginManager = new PluginManager($container, $options ?: []);
+        /** @var WidgetWidgetPluginManager $widgetPluginManager */
+        $widgetPluginManager = new WidgetWidgetPluginManager($container, $options ?: []);
 
         // If this is in a zend-mvc application, the ServiceListener will inject
         // merged configuration during bootstrap.

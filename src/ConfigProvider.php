@@ -3,10 +3,11 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Widget;
 
 use MSBios\Widget\Factory\PhpRendererFactory;
-use MSBios\Widget\Factory\PluginManagerFactory;
+use MSBios\Widget\Factory\WidgetPluginManagerFactory;
 
 /**
  * Class ConfigProvider
@@ -21,6 +22,7 @@ class ConfigProvider
     {
         return [
             'dependencies' => $this->getDependencyConfig(),
+            'view_helpers' => $this->getViewHelperConfig(),
         ];
     }
 
@@ -33,19 +35,37 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                PluginManager::class =>
-                    PluginManagerFactory::class,
-                'WidgetPhpRenderer' =>
+                WidgetWidgetPluginManager::class =>
+                    WidgetPluginManagerFactory::class,
+                'Widget\PhpRenderer' =>
                     PhpRendererFactory::class,
-                'WidgetViewResolver' =>
+                'Widget\ViewResolver' =>
                     Factory\AggregateResolverFactory::class,
-                'WidgetTemplatePathStack' =>
+                'Widget\TemplatePathStack' =>
                     Factory\TemplatePathStackFactory::class,
-                'WidgetTemplateMapResolver' =>
+                'Widget\TemplateMapResolver' =>
                     Factory\TemplateMapResolverFactory::class
             ],
             'aliases' => [
-                'WidgetManager' => PluginManager::class
+                'WidgetManager' =>
+                    WidgetWidgetPluginManager::class
+            ]
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getViewHelperConfig(): array
+    {
+        return [
+            'factories' => [
+                View\Helper\WidgetHelper::class =>
+                    Factory\WidgetInvokeFactory::class
+            ],
+            'aliases' => [
+                'widget' =>
+                    View\Helper\WidgetHelper::class
             ]
         ];
     }

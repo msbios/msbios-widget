@@ -6,11 +6,11 @@
 namespace MSBios\Widget;
 
 /**
- * Interface PluginManagerInterface
+ * Interface WidgetPluginManagerInterface
  *
  * @package MSBios\Widget
  */
-interface PluginManagerInterface
+interface WidgetPluginManagerInterface
 {
     // ...
 }

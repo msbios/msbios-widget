@@ -6,7 +6,7 @@
 
 namespace MSBiosTest\Widget;
 
-use MSBios\Widget\PluginManager;
+use MSBios\Widget\WidgetWidgetPluginManager;
 use PHPUnit\Framework\TestCase;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\Test\Util\ModuleLoader;
@@ -26,9 +26,9 @@ class WidgetManagerTest extends TestCase
         $moduleLoader = new ModuleLoader(include __DIR__ . '/../config/application.config.php');
         /** @var ServiceLocatorInterface $serviceManager */
         $serviceManager = $moduleLoader->getServiceManager();
-        /** @var PluginManager $widgetManager */
+        /** @var WidgetWidgetPluginManager $widgetManager */
         $widgetManager = $serviceManager->get('WidgetManager');
-        $this->assertInstanceOf(PluginManager::class, $widgetManager);
+        $this->assertInstanceOf(WidgetWidgetPluginManager::class, $widgetManager);
 
         return $this;
     }

@@ -11,12 +11,12 @@ use MSBios\Factory\ModuleFactory;
 return [
     'controller_plugins' => [
         'factories' => [
-            Controller\Plugin\WidgetPlugin::class =>
+            Controller\Plugin\Plugin::class =>
                 Factory\WidgetInvokeFactory::class
         ],
         'aliases' => [
             'widget' =>
-                Controller\Plugin\WidgetPlugin::class
+                Controller\Plugin\Plugin::class
         ]
     ],
 
@@ -33,17 +33,6 @@ return [
                 ModuleFactory::class
         ],
 
-    ],
-
-    'view_helpers' => [
-        'factories' => [
-            View\Helper\WidgetHelper::class =>
-                Factory\WidgetInvokeFactory::class
-        ],
-        'aliases' => [
-            'widget' =>
-                View\Helper\WidgetHelper::class
-        ]
     ],
 
     Module::class => [

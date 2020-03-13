@@ -8,11 +8,11 @@ namespace MSBios\Widget;
 use Laminas\ServiceManager\AbstractPluginManager;
 
 /**
- * Class PluginManager
+ * Class WidgetPluginManager
  *
  * @package MSBios\Widget
  */
-class PluginManager extends AbstractPluginManager implements PluginManagerInterface
+class WidgetWidgetPluginManager extends AbstractPluginManager implements WidgetPluginManagerInterface
 {
     // ...
 }
