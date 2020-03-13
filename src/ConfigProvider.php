@@ -6,7 +6,7 @@
 namespace MSBios\Widget;
 
 use MSBios\Widget\Factory\PhpRendererFactory;
-use MSBios\Widget\Factory\WidgetPluginManagerFactory;
+use MSBios\Widget\Factory\PluginManagerFactory;
 
 /**
  * Class ConfigProvider
@@ -33,8 +33,8 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                WidgetPluginManager::class =>
-                    WidgetPluginManagerFactory::class,
+                PluginManager::class =>
+                    PluginManagerFactory::class,
                 'WidgetPhpRenderer' =>
                     PhpRendererFactory::class,
                 'WidgetViewResolver' =>
@@ -45,7 +45,7 @@ class ConfigProvider
                     Factory\TemplateMapResolverFactory::class
             ],
             'aliases' => [
-                'WidgetManager' => WidgetPluginManager::class
+                'WidgetManager' => PluginManager::class
             ]
         ];
     }

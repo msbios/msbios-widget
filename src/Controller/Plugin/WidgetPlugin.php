@@ -7,8 +7,8 @@ namespace MSBios\Widget\Controller\Plugin;
 
 use MSBios\Widget\WidgetInvokeTrait;
 use MSBios\Widget\WidgetPluginManagerAwareInterface;
-use MSBios\Widget\WidgetPluginManagerAwareTrait;
-use MSBios\Widget\WidgetPluginManagerInterface;
+use MSBios\Widget\PluginManagerAwareTrait;
+use MSBios\Widget\PluginManagerInterface;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 
 /**
@@ -17,13 +17,13 @@ use Zend\Mvc\Controller\Plugin\AbstractPlugin;
  */
 class WidgetPlugin extends AbstractPlugin implements WidgetPluginManagerAwareInterface
 {
-    use WidgetPluginManagerAwareTrait;
+    use PluginManagerAwareTrait;
 
     /**
      * WidgetPlugin constructor.
-     * @param WidgetPluginManagerInterface $widgetPluginManager
+     * @param PluginManagerInterface $widgetPluginManager
      */
-    public function __construct(WidgetPluginManagerInterface $widgetPluginManager)
+    public function __construct(PluginManagerInterface $widgetPluginManager)
     {
         $this->setWidgetPluginManager($widgetPluginManager);
     }

@@ -5,13 +5,13 @@
  */
 namespace MSBios\Widget;
 
-use Zend\View\Renderer\RendererInterface;
+use Laminas\View\Renderer\RendererInterface;
 
 /**
- * Trait RendererWidgetAwareTrait
+ * Trait RendererAwareTrait
  * @package MSBios\Widget
  */
-trait RendererWidgetAwareTrait
+trait RendererAwareTrait
 {
     /** @var  RendererInterface */
     protected $renderer;
@@ -29,7 +29,7 @@ trait RendererWidgetAwareTrait
     /**
      * @return RendererInterface
      */
-    public function getRenderer()
+    public function getRenderer(): RendererInterface
     {
         return $this->renderer;
     }

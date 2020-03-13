@@ -22,8 +22,8 @@ return [
 
     'widget_manager' => [
         'initializers' => [
-            WidgetAwareInitializer::class =>
-                new WidgetAwareInitializer
+            RendererAwareInitializer::class =>
+                new RendererAwareInitializer
         ]
     ],
 

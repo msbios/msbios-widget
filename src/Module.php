@@ -6,26 +6,40 @@
 
 namespace MSBios\Widget;
 
-use MSBios\ModuleInterface;
+use Laminas\ModuleManager\Feature\InitProviderInterface;
+use Laminas\ModuleManager\ModuleManagerInterface;
+use Laminas\Stdlib\ArrayUtils;
 use MSBios\Widget\Feature\WidgetProviderInterface;
-use Zend\Loader\AutoloaderFactory;
-use Zend\Loader\StandardAutoloader;
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\InitProviderInterface;
-use Zend\ModuleManager\ModuleManagerInterface;
-use Zend\Stdlib\ArrayUtils;
 
 /**
  * Class Module
+ *
  * @package MSBios\Widget
  */
-class Module implements
-    ModuleInterface,
-    AutoloaderProviderInterface,
-    InitProviderInterface
+class Module extends \MSBios\Module implements InitProviderInterface
 {
     /** @const VERSION */
     const VERSION = '1.0.10';
+
+    /**
+     * @inheritDoc
+     *
+     * @return string
+     */
+    protected function getDir(): string
+    {
+        return __DIR__;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return string
+     */
+    protected function getNamespace(): string
+    {
+        return __NAMESPACE__;
+    }
 
     /**
      * @inheritdoc
@@ -35,35 +49,15 @@ class Module implements
     public function getConfig()
     {
         return ArrayUtils::merge(
-            include __DIR__ . '/../config/module.config.php',
-            [
-                'service_manager' => (new ConfigProvider)->getDependencyConfig()
-            ]
-        );
+            parent::getConfig(), [
+            'service_manager' => (new ConfigProvider)->getDependencyConfig()
+        ]);
     }
 
     /**
-     * @inheritdoc
-     *
-     * @return array
-     */
-    public function getAutoloaderConfig()
-    {
-        return [
-            AutoloaderFactory::STANDARD_AUTOLOADER => [
-                StandardAutoloader::LOAD_NS => [
-                    __NAMESPACE__ => __DIR__,
-                ],
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     *
      * @param ModuleManagerInterface $manager
      */
-    public function init(ModuleManagerInterface $manager)
+    public function init(ModuleManagerInterface $manager): void
     {
         $event = $manager->getEvent();
         $container = $event->getParam('ServiceManager');

@@ -13,7 +13,7 @@ use Laminas\ServiceManager\Initializer\InitializerInterface;
  * @package MSBios\Widget
  * @todo rename WidgetRendererAwareInitializer
  */
-class WidgetAwareInitializer implements InitializerInterface
+class RendererAwareInitializer implements InitializerInterface
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class WidgetAwareInitializer implements InitializerInterface
      */
     public function __invoke(ContainerInterface $container, $instance)
     {
-        if ($instance instanceof RendererWidgetAwareInterface) {
+        if ($instance instanceof RendererAwareInterface) {
             $instance->setRenderer(
                 $container->get('WidgetPhpRenderer')
             );
@@ -32,7 +32,7 @@ class WidgetAwareInitializer implements InitializerInterface
 
     /**
      * @param $an_array
-     * @return WidgetAwareInitializer
+     * @return RendererAwareInitializer
      */
     public static function __set_state($an_array)
     {

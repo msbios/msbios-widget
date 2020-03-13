@@ -7,11 +7,11 @@ namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use MSBios\Widget\WidgetPluginManager;
-// use Zend\ServiceManager\Factory\FactoryInterface;
+use MSBios\Widget\PluginManager;
 
 /**
- * Class WidgetPluginFactory
+ * Class WidgetInvokeFactory
+ *
  * @package MSBios\Widget\Factory
  */
 class WidgetInvokeFactory implements FactoryInterface
@@ -26,6 +26,6 @@ class WidgetInvokeFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        return new $requestedName($container->get(WidgetPluginManager::class));
+        return new $requestedName($container->get(PluginManager::class));
     }
 }

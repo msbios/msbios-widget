@@ -9,8 +9,8 @@ namespace MSBios\Widget\View\Helper;
 use Laminas\View\Helper\AbstractHelper;
 use MSBios\Widget\WidgetInvokeTrait;
 use MSBios\Widget\WidgetPluginManagerAwareInterface;
-use MSBios\Widget\WidgetPluginManagerAwareTrait;
-use MSBios\Widget\WidgetPluginManagerInterface;
+use MSBios\Widget\PluginManagerAwareTrait;
+use MSBios\Widget\PluginManagerInterface;
 
 /**
  * Class WidgetHelper
@@ -18,13 +18,13 @@ use MSBios\Widget\WidgetPluginManagerInterface;
  */
 class WidgetHelper extends AbstractHelper implements WidgetPluginManagerAwareInterface
 {
-    use WidgetPluginManagerAwareTrait;
+    use PluginManagerAwareTrait;
 
     /**
      * WidgetHelper constructor.
-     * @param WidgetPluginManagerInterface $widgetManager
+     * @param PluginManagerInterface $widgetManager
      */
-    public function __construct(WidgetPluginManagerInterface $widgetManager)
+    public function __construct(PluginManagerInterface $widgetManager)
     {
         $this->setWidgetPluginManager($widgetManager);
     }

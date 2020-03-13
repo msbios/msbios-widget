@@ -12,13 +12,13 @@ namespace MSBios\Widget;
 interface WidgetPluginManagerAwareInterface
 {
     /**
-     * @return WidgetPluginManagerInterface
+     * @return PluginManagerInterface
      */
     public function getWidgetPluginManager();
 
     /**
-     * @param WidgetPluginManagerInterface $widgetManager
+     * @param PluginManagerInterface $widgetManager
      * @return mixed
      */
-    public function setWidgetPluginManager(WidgetPluginManagerInterface $widgetManager);
+    public function setWidgetPluginManager(PluginManagerInterface $widgetManager);
 }

@@ -8,10 +8,10 @@ namespace MSBios\Widget;
 use Laminas\View\Renderer\RendererInterface;
 
 /**
- * Interface RendererWidgetAwareInterface
+ * Interface RendererAwareInterface
  * @package MSBios\Widget
  */
-interface RendererWidgetAwareInterface
+interface RendererAwareInterface
 {
     /**
      * @param RendererInterface $renderer
