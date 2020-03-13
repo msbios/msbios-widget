@@ -6,50 +6,59 @@
 namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Config;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use MSBios\Widget\WidgetPluginManager;
-use Zend\ServiceManager\Config;
-use Zend\ServiceManager\Factory\FactoryInterface;
+use MSBios\Widget\WidgetPluginManagerInterface;
+
+// use Zend\ServiceManager\Config;
+// use Zend\ServiceManager\Factory\FactoryInterface;
 
 /**
  * Class WidgetPluginManagerFactory
+ *
  * @package MSBios\Widget\Factory
  */
 class WidgetPluginManagerFactory implements FactoryInterface
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return WidgetPluginManager|object
+     * @return WidgetPluginManagerInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(
+        ContainerInterface $container,
+        $requestedName,
+        array $options = null): WidgetPluginManagerInterface
     {
-        /** @var WidgetPluginManager $widgetManager */
-        $widgetManager = new WidgetPluginManager($container, $options ?: []);
+        /** @var WidgetPluginManager $widgetPluginManager */
+        $widgetPluginManager = new WidgetPluginManager($container, $options ?: []);
 
         // If this is in a zend-mvc application, the ServiceListener will inject
         // merged configuration during bootstrap.
         if ($container->has('ServiceListener')) {
-            return $widgetManager;
+            return $widgetPluginManager;
         }
 
         // If we do not have a config service, nothing more to do
         if (! $container->has('config')) {
-            return $widgetManager;
+            return $widgetPluginManager;
         }
 
+        /** @var array $config */
         $config = $container->get('config');
 
         // If we do not have filters configuration, nothing more to do
         if (! isset($config['widget_manager']) || ! is_array($config['widget_manager'])) {
-            return $widgetManager;
+            return $widgetPluginManager;
         }
 
         // Wire service configuration for validators
-        (new Config($config['widget_manager']))->configureServiceManager($widgetManager);
+        (new Config($config['widget_manager']))->configureServiceManager($widgetPluginManager);
 
-        return $widgetManager;
+        return $widgetPluginManager;
     }
 }

@@ -6,12 +6,13 @@
 namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\View\Resolver\TemplatePathStack;
 use MSBios\Widget\Module;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\View\Resolver\TemplatePathStack;
 
 /**
  * Class TemplatePathStackFactory
+ *
  * @package MSBios\Widget\Factory
  */
 class TemplatePathStackFactory implements FactoryInterface
@@ -29,7 +30,6 @@ class TemplatePathStackFactory implements FactoryInterface
         /** @var array $options */
         $options = $container->get(Module::class);
 
-        /** @var TemplatePathStack $stack */
         return new TemplatePathStack([
             'script_paths' => $options['template_path_stack'],
             'default_suffix' => $options['default_template_suffix']

@@ -7,11 +7,11 @@
 namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\View\Resolver\AggregateResolver;
-use Zend\View\Resolver\RelativeFallbackResolver;
-use Zend\View\Resolver\TemplateMapResolver;
-use Zend\View\Resolver\TemplatePathStack;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\View\Resolver\AggregateResolver;
+use Laminas\View\Resolver\RelativeFallbackResolver;
+use Laminas\View\Resolver\TemplateMapResolver;
+use Laminas\View\Resolver\TemplatePathStack;
 
 /**
  * Class AggregateResolverFactory
@@ -20,12 +20,14 @@ use Zend\View\Resolver\TemplatePathStack;
 class AggregateResolverFactory implements FactoryInterface
 {
     /**
+     * @inheritDoc
+     *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
      * @return AggregateResolver
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AggregateResolver
     {
         /** @var TemplateMapResolver $map */
         $map = $container->get('WidgetTemplateMapResolver');
@@ -34,13 +36,10 @@ class AggregateResolverFactory implements FactoryInterface
         $stack = $container->get('WidgetTemplatePathStack');
 
         /** @var AggregateResolver $aggregateResolver */
-        $aggregateResolver = new AggregateResolver;
-        $aggregateResolver
+        return (new AggregateResolver)
             ->attach($map)
             ->attach($stack)
             ->attach(new RelativeFallbackResolver($map))
             ->attach(new RelativeFallbackResolver($stack));
-
-        return $aggregateResolver;
     }
 }

@@ -10,23 +10,24 @@ use MSBios\Widget\Exception\WidgetNotFoundException;
 
 /**
  * Trait WidgetInvokeTrait
+ *
  * @package MSBios\Widget
  */
 trait WidgetInvokeTrait
 {
     /**
+     * @inheritDoc
+     *
      * @param $identifier
      * @param null $options
      * @param callable|null $callback
      * @return mixed
+     * @throws \Throwable
      */
     public function __invoke($identifier, $options = null, callable $callback = null)
     {
         if (! $this->getWidgetPluginManager()->has($identifier)) {
-            throw new WidgetNotFoundException(
-                "Unable to resolve widget '{$identifier}' to a factory; "
-                . "are you certain you provided it during configuration?"
-            );
+            throw WidgetNotFoundException::unableToResolveWidget($identifier);
         }
 
         /** @var WidgetInterface $widget */
@@ -35,13 +36,9 @@ trait WidgetInvokeTrait
             ->get($identifier);
 
         if (! $widget instanceof WidgetInterface) {
-            throw new InvalidArgumentException(
-                'This registered service is not a widget, '
-                . 'to define a widget, implement the interface' . WidgetInterface::class
-            );
+            throw InvalidArgumentException::registeredServiceIsNotAWidget();
         }
 
-        return $widget
-            ->output($options, $callback);
+        return $widget->output($options, $callback);
     }
 }

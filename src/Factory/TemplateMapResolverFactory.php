@@ -6,28 +6,27 @@
 namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\View\Resolver\TemplateMapResolver;
 use MSBios\Widget\Module;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\View\Resolver\TemplateMapResolver;
 
 /**
  * Class TemplateMapResolverFactory
+ *
  * @package MSBios\Widget\Factory
  */
 class TemplateMapResolverFactory implements FactoryInterface
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return object|TemplateMapResolver
+     * @return TemplateMapResolver
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): TemplateMapResolver
     {
-        return new TemplateMapResolver(
-            $container->get(Module::class)['template_map']
-        );
+        return new TemplateMapResolver($container->get(Module::class)['template_map']);
     }
 }

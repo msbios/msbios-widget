@@ -6,11 +6,11 @@
 
 namespace MSBios\Widget\View\Helper;
 
+use Laminas\View\Helper\AbstractHelper;
 use MSBios\Widget\WidgetInvokeTrait;
 use MSBios\Widget\WidgetPluginManagerAwareInterface;
 use MSBios\Widget\WidgetPluginManagerAwareTrait;
 use MSBios\Widget\WidgetPluginManagerInterface;
-use Zend\View\Helper\AbstractHelper;
 
 /**
  * Class WidgetHelper

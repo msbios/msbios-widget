@@ -5,7 +5,7 @@
  */
 namespace MSBios\Widget;
 
-use Zend\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\AbstractPluginManager;
 
 /**
  * Class WidgetPluginManager

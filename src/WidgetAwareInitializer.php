@@ -6,7 +6,7 @@
 namespace MSBios\Widget;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Initializer\InitializerInterface;
+use Laminas\ServiceManager\Initializer\InitializerInterface;
 
 /**
  * Class WidgetAwareInitializer

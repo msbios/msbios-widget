@@ -5,7 +5,7 @@
  */
 namespace MSBios\Widget;
 
-use Zend\View\Renderer\RendererInterface;
+use Laminas\View\Renderer\RendererInterface;
 
 /**
  * Interface RendererWidgetAwareInterface
@@ -20,9 +20,9 @@ interface RendererWidgetAwareInterface
     public function setRenderer(RendererInterface $renderer);
 
     /**
-     * @return mixed
+     * @return RendererInterface
      */
-    public function getRenderer();
+    public function getRenderer(): RendererInterface;
 
     /**
      * @param $nameOrModel

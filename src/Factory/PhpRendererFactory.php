@@ -3,33 +3,34 @@
  * @access protected
  * @author Judzhin Miles <info[woof-woof]msbios.com>
  */
+
 namespace MSBios\Widget\Factory;
 
 use Interop\Container\ContainerInterface;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\View\Renderer\PhpRenderer;
-use Zend\View\Renderer\RendererInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\View\Renderer\RendererInterface;
+use MSBios\View\Renderer\PhpRenderer;
 
 /**
  * Class PhpRendererFactory
+ *
  * @package MSBios\Widget\Factory
  */
 class PhpRendererFactory implements FactoryInterface
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param ContainerInterface $container
      * @param string $requestedName
      * @param array|null $options
-     * @return object|RendererInterface
+     * @return RendererInterface
      */
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): RendererInterface
     {
         /** @var RendererInterface $renderer */
-         $renderer = new PhpRenderer;
-         $renderer->setHelperPluginManager($container->get('ViewHelperManager'));
-         $renderer->setResolver($container->get('WidgetViewResolver'));
-         return $renderer;
+        return (new PhpRenderer)
+            ->setHelperPluginManager($container->get('ViewHelperManager'))
+            ->setResolver($container->get('WidgetViewResolver'));
     }
 }
